@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trabalho 1 Tecnologias</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+    body { 
+        font-family: arial, sans-serif;
+        font-size: 1rem; /* HTML/CSS Obrigatório pelo menos um elemento com: o unidades de medida em px, %, em e rem (todos) */
+        background-color: #d1edd7; 
+    }
+
+    .container-custom { 
+        max-width: 700px; /* HTML/CSS Obrigatório pelo menos um elemento com: o unidades de medida em px, %, em e rem (todos)*/
+        margin: 20px auto; /* HTML/CSS Obrigatório pelo menos um elemento com: o unidades de medida em px, %, em e rem (todos) */
+        position: relative; /* HTML/CSS Obrigatório pelo menos um elemento com: propriedade position: relative, absolute ou fixed (pelo menos um dos 3) */
+    }
+
+    #nota-lista { 
+        display: flex; /* HTML/CSS Obrigatório pelo menos um elemento com: propriedade display: none, inline-block e flex (todos) */
+        flex-direction: column; 
+        margin-bottom: 20px;
+    }
+
+    .nota-card { 
+        display: inline-block; /* HTML/CSS Obrigatório pelo menos um elemento com: propriedade display: none, inline-block e flex (todos) */
+        margin-bottom: 10px; 
+    }
+
+    .badge { 
+        padding: 0.3em 0.5em; /* HTML/CSS Obrigatório pelo menos um elemento com: o unidades de medida em px, %, em e rem (todos) */
+    }
+
+    .hidden { 
+        display: none; /* HTML/CSS Obrigatório pelo menos um elemento com: propriedade display: none, inline-block e flex (todos) */
+    }
+
+    .card-extra {
+        margin-bottom: 10px;
+    }
+
+    .img-exemplo {
+        width: 60%; /* HTML/CSS Obrigatório pelo menos um elemento com: o unidades de medida em px, %, em e rem (todos) */
+        max-width: 100px; /* HTML/CSS Obrigatório pelo menos um elemento com: o unidades de medida em px, %, em e rem (todos) */
+        height: 100px; /* HTML/CSS Obrigatório pelo menos um elemento com: o unidades de medida em px, %, em e rem (todos) */
+    }
+</style>
+</head>
+<body>
+
+<div class="container container-custom"> <!-- Bootstrap  Pelo menos 1 classe para div's (container, container-*, ou container-fluid) -->
+<!-- CONTAINER PRINCIPAL -->
+
+    <h1 class="text-center mb-4">Lembretes</h1> <!-- HTML/CSS Tags html mínimas: <h1> -->
+
+    <div class="row mb-3"> <!-- Bootstrap  Explorar a estrutura de Grid do BS: row -->
+        <div class="col-12 col-sm-6 col-md-12"> <!-- Bootstrap  Explorar a estrutura de Grid do BS: col-*, col-sm-*, col-md-* -->
+            <ul class="list-group" id="nota-lista"></ul>
+        </div>
+    </div>
+
+    <form id="nota-form"> <!-- requisito html/css 1.2 Formulário -->
+    <!-- INÍCIO DO FORMULÁRIO -->
+        <div class="mb-2">
+            <input type="text" class="form-control" id="titulo" placeholder="Título" required> <!-- HTML/CSS Formulário com pelo menos 3 tipos de input’s (text) --> <!-- Bootstrap  Classes do BS para os elementos do formulário -->
+        </div>
+
+        <div class="mb-2">
+            <textarea class="form-control" id="descricao" rows="2" placeholder="Descrição" required></textarea> <!-- HTML/CSS Formulário com pelo menos 3 tipos de input’s (textarea) --> <!-- Bootstrap  Classes do BS para os elementos do formulário -->
+        </div>
+
+        <div class="mb-2">
+            <select class="form-select" id="categoria"> <!-- INÍCIO DO SELECT --> <!-- Bootstrap  Classes do BS para os elementos do formulário -->
+                <option value="Pessoal">Pessoal</option>
+                <option value="Trabalho">Trabalho</option>
+                <option value="Estudos">Estudos</option>
+            </select> <!-- HTML/CSS Formulário com pelo menos 3 tipos de input’s (select) -->
+        </div>
+
+        <div class="mb-2">
+            <input type="email" class="form-control" id="email" placeholder="E-mail (opcional)"> <!-- HTML/CSS Formulário com pelo menos 3 tipos de input’s (email) --> <!-- Bootstrap  Classes do BS para os elementos do formulário -->
+        </div>
+
+        <div class="mb-2"> <!-- RADIO PRIORIDADES -->
+            <div class="form-check form-check-inline"> <!-- Bootstrap  Classes do BS para os elementos do formulário -->
+                <input class="form-check-input" type="radio" name="prioridade" id="alta" value="Urgente" checked>
+                <label class="form-check-label" for="alta">Urgente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="prioridade" id="media" value="Relevante">
+                <label class="form-check-label" for="media">Relevante</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="prioridade" id="baixa" value="Opcional">
+                <label class="form-check-label" for="baixa">Opcional</label>
+            </div> <!-- HTML/CSS Formulário com pelo menos 3 tipos de input’s (radio) -->
+        </div>
+
+        <div class="mb-2"> <!-- INPUT DATA -->
+            <label for="data" class="form-label">Prazo</label>
+            <input type="date" class="form-control" id="data" required> <!-- HTML/CSS Formulário com pelo menos 3 tipos de input’s (date) -->
+            <!-- DATA -->
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mb-3"> <!-- HTML/CSS Tags html mínimas: <button> -->
+            <i class="bi bi-plus-circle"></i> Adicionar lembrete <!-- Bootstrap  Ícones -->
+        </button>
+    </form>
+    <!-- FIM DO FORMULÁRIO -->
+
+    <table class="table table-striped hidden mt-3" id="tabela-notas"> <!-- HTML/CSS Tags html mínimas: <table> -->
+    <!-- TABELA RESUMO -->
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Prazo</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button class="btn btn-success mt-2 w-100" type="button" id="toggle-tabela">Mostrar / Ocultar Resumo</button> <!-- BOTÃO TOGGLE -->
+    <button class="btn btn-success mt-2 w-100" type="button" id="baixar-tabela"> <!-- BOTÃO BAIXAR -->
+        <i class="bi bi-download"></i> Baixar Resumo (TXT)
+    </button>
+
+    <div class="card card-extra mb-3"> <!-- Bootstrap  Incluir pelo menos mais 2 tipos de componentes não vistos em aula e suas classes BS (card) -->
+    <!-- CARD -->
+        <div class="card-body">
+            <p class="card-text">Implementação de uma aplicação web, que utiliza HTML 5 e CSS, Bootstrap e JavaScript.</p>
+            <a href="https://www.unioeste.br" target="_blank"> Site Unioeste </a> <!-- HTML/CSS Tags html mínimas: <a> -->
+            <br>
+            <img src="Logo_unioeste.png" alt="Logo UNIOESTE" class="img-exemplo"> <!-- HTML/CSS Tags html mínimas: <img> -->
+        </div>
+    </div>
+
+    <div class="accordion" id="accordionResumo"> <!-- Bootstrap  Incluir pelo menos mais 2 tipos de componentes não vistos em aula e suas classes BS (accordion) -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne"> <!-- HTML/CSS Tags html mínimas: <h2> -->
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Detalhes do Trabalho 1 (lembretes)
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionResumo">
+          <div class="accordion-body">
+            Aplicação Web que utiliza HTML 5 e CSS, Bootstrap e JavaScript.
+        </div>
+      </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+let notas = []; /* JavaScript Arrays */
+// ARRAY PARA ARMAZENAR NOTAS
+
+const prioridadeOrder = { "Urgente": 1, "Relevante": 2, "Opcional": 3 }; /* JavaScript objetos */
+// OBJETO PARA ORDENAR PRIORIDADES
+
+function adicionarNota(e) { /* JavaScript Funções: explorar os 3 formatos (function declaration) */
+    // FUNÇÃO PARA ADICIONAR NOTA
+    e.preventDefault();
+    const titulo = document.getElementById('titulo').value; // PEGAR VALOR TÍTULO
+    const descricao = document.getElementById('descricao').value; // PEGAR VALOR DESCRIÇÃO
+    const categoria = document.getElementById('categoria').value; // PEGAR VALOR CATEGORIA
+    const prioridade = document.querySelector('input[name="prioridade"]:checked').value; // PEGAR VALOR PRIORIDADE
+    const data = document.getElementById('data').value; // PEGAR VALOR DATA
+
+    notas.push({ titulo, descricao, categoria, prioridade, data }); // ADICIONAR NOTA AO ARRAY
+    atualizarLista(); // ATUALIZA LISTA NA TELA
+    document.getElementById('nota-form').reset(); // RESETAR FORMULÁRIO
+}
+
+const atualizarLista = function () { /* JavaScript Funções: explorar os 3 formatos (Function expression) */
+    // FUNÇÃO PARA ATUALIZAR LISTA E TABELA
+    notas.sort((a,b)=>prioridadeOrder[a.prioridade]-prioridadeOrder[b.prioridade]); // ORDENA POR PRIORIDADE
+    const lista = document.getElementById('nota-lista'); // PEGAR UL
+    const tabela = document.querySelector('#tabela-notas tbody'); // PEGAR TABELA
+
+    lista.innerHTML = ''; // LIMPAR LISTA
+    tabela.innerHTML = ''; // LIMPAR TABELA
+
+    notas.forEach((nota, index) => { 
+        const partes = nota.data.split('-'); // FORMATAR DATA 
+        const dataFmt = `${partes[2]}/${partes[1]}/${partes[0]}`; // DIA/MES/ANO
+        let classeBadge = nota.prioridade==="Urgente"?"bg-danger":nota.prioridade==="Relevante"?"bg-warning":"bg-success"; // COR DO BADGE
+
+        const li = document.createElement('li'); // CRIAR LIST ITEM
+        li.className = 'list-group-item nota-card d-flex justify-content-between align-items-start'; // CLASSES BOOTSTRAP
+        li.innerHTML = `
+            <div>
+                <span class="badge ${classeBadge} me-2">${nota.prioridade}</span>
+                <strong>${nota.titulo} (${nota.categoria})</strong><br>
+                ${nota.descricao}<br><small>${dataFmt}</small>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="removerNota(${index})">
+                <i class="bi bi-trash"></i>
+            </button>
+        `;
+        lista.appendChild(li); // ADICIONA LIST ITEAM NA LISTA
+
+        const tr = document.createElement('tr'); // CRIA TABLE ROW
+        tr.innerHTML = `<td>${nota.titulo}</td><td>${dataFmt}</td>`; // ADICIONA DADOS
+        tabela.appendChild(tr); // ADICIONA TABLE ROW NA TABELA
+    });
+};
+
+const removerNota = index => { /* JavaScript Funções: explorar os 3 formatos (Arrow function) */
+    // FUNÇÃO PARA REMOVER NOTA
+    notas.splice(index,1); // REMOVE NOTA
+    atualizarLista(); // ATUALIZA LISTA
+};
+
+document.getElementById('toggle-tabela').addEventListener('click', () => { /* JavaScript Eventos: (click) */
+    // BOTÃO MOSTRAR/OCULTAR TABELA
+    document.getElementById('tabela-notas').classList.toggle('hidden'); 
+});
+
+document.getElementById('baixar-tabela').addEventListener('click', () => { /* JavaScript Eventos: (click) */
+    // BOTÃO PARA BAIXAR RESUMO TXT
+    if(notas.length === 0) return alert("Não existe lembrete(s) para baixar."); // ALERTA SE O ARRAY TÁ VAZIO (WARNING)
+    let conteudo = "Título\tPrazo\n"; // CABEÇALHO TXT
+    notas.forEach(nota => { 
+        const partes = nota.data.split('-'); // FORMATAR DATA
+        const dataFmt = `${partes[2]}/${partes[1]}/${partes[0]}`; 
+        conteudo += `${nota.titulo}\t${dataFmt}\n`; // CONTEÚDO TXT
+    });
+    const blob = new Blob([conteudo], {type: "text/plain"}); // CRIA BLOOB (RAWD DATA - TEXT)
+    const url = URL.createObjectURL(blob); // CRIA URL
+    const a = document.createElement('a'); // CRIA LINK
+    a.href = url;
+    a.download = 'resumo_lembretes.txt'; // NOME ARQUIVO
+    a.click(); // BAIXA ARQUIVO
+    URL.revokeObjectURL(url); // LIBERA URL
+});
+
+document.getElementById('nota-form').addEventListener('submit', adicionarNota); /* JavaScript Eventos: (submit) */
+// EVENTO SUBMIT FORMULÁRIO
+</script>
+</body>
+</html>
